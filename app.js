@@ -1,13 +1,18 @@
-const path = require('path')
-const express = require('express')
+const path = require("path");
+const express = require("express");
+require("dotenv").config();
 
-const app = express()
+require("./server/database/db");
 
-app.use(express.static(path.join(__dirname,'public')))
-app.use((req,res)=>{
-    res.status(404)
-    res.send(`<h1>Error 404: Resource not found!</h1>`)
-})
-app.listen(3000,()=>{
-    console.log('App listening to port 3000')
-})
+const app = express();
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use((req, res) => {
+  res.status(404);
+  res.send(`<h1>Error 404: Resource not found!</h1>`);
+});
+
+app.listen(3000, () => {
+  console.log("App listening to port 3000");
+});
