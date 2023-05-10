@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 
 const shipperSchema = new mongoose.Schema({
-  name: String,
-  age: Number,
+  id: mongoose.Types.ObjectId,
+  username: String,
+  password: String,
+  profilePicture: String,
+  distributionHub: String,
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Shipper", shipperSchema);

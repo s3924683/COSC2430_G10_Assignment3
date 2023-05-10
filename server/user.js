@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  id: String,
+  id: mongoose.Types.ObjectId,
   username: String,
   password: String,
-  profilePicture: Blob,
   name: String,
+  profilePicture: String,
   address: String,
 });
 

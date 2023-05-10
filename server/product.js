@@ -1,15 +1,12 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-  id: String,
   name: String,
-  image: Blob,
+  image: String,
+  description: String,
   quantity: Number,
   vendor: String,
-  description: String,
-  ratings: Number,
-  categories: Array,
-  comments: Object,
+  category: Array,
 });
 
 module.exports = mongoose.model("Product", productSchema);

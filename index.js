@@ -1,5 +1,5 @@
-const path = require("path");
 const express = require("express");
+const path = require("path");
 require("dotenv").config();
 require("./server/database/mongoose");
 
@@ -7,11 +7,12 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use((req, res) => {
-  res.status(404);
-  res.send(`<h1>Error 404: Resource not found!</h1>`);
-});
+app.set("view engine", "ejs");
 
 app.listen(3000, () => {
   console.log("App listening to port 3000");
+});
+
+app.get("/", async (req, res) => {
+  res.render("homepage");
 });
