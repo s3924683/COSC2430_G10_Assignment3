@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 require("dotenv").config();
-
 require("./server/database/mongoose");
 
 const app = express();

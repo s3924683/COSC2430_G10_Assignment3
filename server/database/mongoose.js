@@ -5,6 +5,7 @@ mongoose
   .catch((err) => console.error(err));
 
 const User = require("../user.js");
+const Product = require('../product.js')
 
 const user = new User({ name: "s3924683", age: 20 });
 user.save().then(console.log("Done!"));
