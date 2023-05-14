@@ -4,4 +4,4 @@ mongoose
   .then(() => console.log("DB Connected!"))
   .catch((err) => console.error(err));
 
-const { Shipper, Vendor, user } = require("../users.js");
+const { Shipper, Vendor, User } = require("../users.js");
