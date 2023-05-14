@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-var validator = require('validator').default;
+const validator = require('validator').default;
 
 const usernameRules = {
   type: String,
