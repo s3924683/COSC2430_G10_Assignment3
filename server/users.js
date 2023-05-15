@@ -18,14 +18,18 @@ const usernameRules = {
 const passwordRules = {
   type: String,
   required: true,
+  minlength: 8,
+  maxlength: 20,
+  match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/,
   validate(value) {
-    console.log(value);
-    if (value !== this.password2) {
-      throw new Error("Passwords don't match. Try again.");
-    }
-
-    if (value.length < 8) {
-      throw new Error("Passwords is too short. At least 8 characters.");
+    if (
+      !value.match(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/
+      )
+    ) {
+      throw new Error(
+        "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+      );
     }
   },
 };
@@ -51,8 +55,17 @@ const vendorSchema = new mongoose.Schema({
   username: usernameRules,
   password: passwordRules,
   pfp: pfpRules,
-  businessName: String,
-  businessAddress: String,
+  businessName: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true,
+  },
+  businessAddress: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 });
 
 module.exports = {
