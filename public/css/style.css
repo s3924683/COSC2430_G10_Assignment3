@@ -18,3 +18,8 @@ a:hover {
     justify-content: center;
     flex-direction: column;
 }
+
+.sidebar-wrapper{
+    overflow-y: auto;
+    max-height: 300px;
+   }
