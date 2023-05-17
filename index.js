@@ -6,6 +6,7 @@ require("./server/database/mongoose");
 const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded());
 
 app.set("view engine", "ejs");
 
@@ -24,6 +25,13 @@ app.get("/about", async (req, res) => {
     categories: require("./server/database/categories.json"),
   });
 });
+app.get("/vendorAddProduct", async (req, res) => {
+  res.render("vendorAddProduct", { isSubmitted: false });
+});
+app.post("/vendorAddProduct", (req, res) => {
+  res.render("vendorAddProduct", { isSubmitted: true });
+  console.log(req.body);
+});
 // Define a route for category name
 app.get("/categories/:categoryName", async (req, res) => {
   const categoryName = req.params.categoryName;
@@ -41,7 +49,7 @@ app.get("/search/:query/:sort?", function (req, res) {});
 app.get("/products/:product", function (req, res) {});
 // Define a route for showing cart
 app.get("/cart", function (req, res) {});
-
+//Run this if page didn't find a resource to render
 app.use(function (req, res, next) {
   res.status(404).send("<h1>Sorry, this page does not exist.</h1>");
 });
