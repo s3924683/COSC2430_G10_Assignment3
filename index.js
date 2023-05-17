@@ -14,10 +14,10 @@ app.listen(3000, () => {
 });
 
 app.get("/", async (req, res) => {
-  res.render("homepage");
+  res.render("homepage", { categories: require('./server/database/categories.json')});
 });
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.status(404).send('<h1>Sorry, this page does not exist.</h1>');
 });
 

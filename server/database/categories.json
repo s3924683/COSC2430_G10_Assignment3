@@ -1,0 +1,22 @@
+{
+  "electronics": "Electronics",
+  "clothing": "Clothing",
+  "homeAndKitchen": "Home and Kitchen",
+  "beautyAndPersonalCare": "Beauty and Personal Care",
+  "books": "Books",
+  "sportsAndOutdoors": "Sports and Outdoors",
+  "healthAndWellness": "Health and Wellness",
+  "toysAndGames": "Toys and Games",
+  "automotive": "Automotive",
+  "babyAndKids": "Baby and Kids",
+  "petSupplies": "Pet Supplies",
+  "furnitureAndDecor": "Furniture and Decor",
+  "jewelryAndAccessories": "Jewelry and Accessories",
+  "toolsAndHomeImprovement": "Tools and Home Improvement",
+  "groceriesAndGourmetFood": "Groceries and Gourmet Food",
+  "officeProducts": "Office Products",
+  "moviesMusicAndEntertainment": "Movies, Music, and Entertainment",
+  "industrialAndScientific": "Industrial and Scientific",
+  "softwareAndDigitalProducts": "Software and Digital Products",
+  "outdoorAndGarden": "Outdoor and Garden"
+}
