@@ -14,23 +14,29 @@ app.listen(3000, () => {
 });
 
 app.get("/", async (req, res) => {
-  res.render("homepage", { categories: require('./server/database/categories.json')});
+  res.render("homepage", {
+    categories: require("./server/database/categories.json"),
+  });
+});
+
+app.get("/categories/:categoryName", async (req, res) => {
+  const categoryName = req.params.categoryName;
+  const categories = require("./server/database/categories.json")
+  res.render("category", {
+    categories: require("./server/database/categories.json"),
+    activeCategory:  categories[categoryName],
+  });
 });
 
 app.use(function (req, res, next) {
-  res.status(404).send('<h1>Sorry, this page does not exist.</h1>');
+  res.status(404).send("<h1>Sorry, this page does not exist.</h1>");
 });
 
 // Define a route for user login
-app.get('/user/:login?', function (req, res) {
-});
+app.get("/user/:login?", function (req, res) {});
 // Define a route for handling search queries
-app.get('/search/:query/:sort?', function (req, res) {
-});
+app.get("/search/:query/:sort?", function (req, res) {});
 // Define a route for product display
-app.get('/products/:product', function (req, res) {
-});
+app.get("/products/:product", function (req, res) {});
 // Define a route for showing cart
-app.get('/cart', function (req, res) {
-});
-
+app.get("/cart", function (req, res) {});
