@@ -1,11 +1,16 @@
 const searchButton = document.getElementById("search-button");
-const searchBox = document.getElementById("search-box")
-const priceRange = document.getElementById("price-range")
+const searchBox = document.getElementById("search-box");
+const searchForm = document.getElementById("search-form");
+const priceRange = document.getElementById("price-range");
 
-searchButton.addEventListener(('click'), (e) => {
-    const query = searchBox.value
-    const price = priceRange.value || 0
+searchForm.addEventListener("submit", (ev) => {
+  ev.preventDefault();
 
-    const searchPageUrl = `/search?query=${encodeURIComponent(query)}&price=${encodeURIComponent(price)}`;
-    window.location.href = searchPageUrl;
-})
+  const price = priceRange.value || 0;
+  const query = searchBox.value;
+
+  const searchPageUrl = `/search?query=${encodeURIComponent(
+    query
+  )}&price=${encodeURIComponent(price)}`;
+  window.location.href = searchPageUrl;
+});

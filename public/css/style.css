@@ -81,8 +81,8 @@ a:hover {
   vertical-align: middle;
 }
 
-input,
-button {
+#search-box,
+#search-button {
   color: #fff;
   font-family: Nunito;
   padding: 0;
@@ -92,17 +92,11 @@ button {
 }
 
 #cover {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  width: 450px;
-  padding: 25px;
-  margin: -10px auto 0 auto;
   background-color: #28d7b4;
   border-radius: 20px;
   box-shadow: 0 10px 40px #28d7b4, 0 0 0 20px #ffffffeb;
   transform: scale(0.6);
+  margin-bottom: 5px;
 }
 
 form {
@@ -125,7 +119,7 @@ input[type="text"]::placeholder {
   padding-left: 35px;
 }
 
-button {
+#search-button {
   position: relative;
   display: block;
   width: 84px;
@@ -147,7 +141,7 @@ button {
   transition: 0.5s ease all;
 }
 
-button span {
+#search-button span {
   position: absolute;
   top: 68px;
   left: 43px;
@@ -160,8 +154,8 @@ button span {
   transition: 0.5s ease all;
 }
 
-button span:before,
-button span:after {
+#search-button span:before,
+#search-button span:after {
   content: "";
   position: absolute;
   bottom: 0;
