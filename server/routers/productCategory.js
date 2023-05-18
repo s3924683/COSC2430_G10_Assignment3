@@ -1,14 +1,19 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const productControllers = require("../controllers/productControllers");
 
-router.route('/:categoryName').get((req, res) => {
-    const categoryName = req.params.categoryName;
-    const categories = require("../database/categories.json");
+router.route("/:categoryName").get(async (req, res) => {
+  const categoryName = req.params.categoryName;
+  const categories = require("../database/categories.json");
 
-    res.render('productCategory', {
-        categories: categories,
-        activeCategory: categories[categoryName],
-    });
-})
+  const products = await productControllers.getAllProducts();
 
-module.exports = router
+  res.render("productCategory", {
+    categories: categories,
+    displayBreadcrumb: true,
+    categoryName: categories[categoryName],
+    products: products,
+  });
+});
+
+module.exports = router;

@@ -5,16 +5,15 @@ const productSchema = new mongoose.Schema({
     type: String,
     name: String,
     minLength: 10,
-    maxLength: 20
+    maxLength: 20,
   },
   price: {
     type: Number,
-    minLength: 0
+    minLength: 0,
   },
-  image:
-  {
+  image: {
     data: Buffer,
-    contentType: String
+    contentType: String,
   },
   description: {
     type: String,
@@ -22,9 +21,10 @@ const productSchema = new mongoose.Schema({
     maxLength: 500,
   },
   vendor: String,
-  category: [{
-    type: String
-  }]
+  category: {
+    type: String,
+    minLength: 0,
+  },
 });
 
 module.exports = mongoose.model("Product", productSchema);
