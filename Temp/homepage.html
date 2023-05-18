@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lazppe</title>
 
   <link rel="icon" href="/public/assets/imgs/rmit-icon.png" type="image/icon type" />
@@ -18,10 +18,9 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link href="../public/css/style.css" rel="stylesheet" />
 </head>
-
 <body class="d-flex flex-column min-vh-100">
   <!-- Navigation-->
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <nav class="navbar navbar-expand-sm navbar-light bg-gradient">
     <div class="container">
       <a href="" class="navbar-brand mb-0 h1">
         <img class="d-inline-block align-top" src="/public/assets/imgs/rmit-icon.png" alt="" width="30px" height="30px">
@@ -44,7 +43,7 @@
             </a>
           </li>
         </ul>
-
+      
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active">
             <a href="#" class="nav-link">
@@ -64,11 +63,13 @@
     </div>
   </nav>
   <!-- Header-->
-  <header class="bg-dark py-5">
+  <header class="bg-image py-5"
+   style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/77.jpg');
+  height: 40vh">
     <div class="container px-4 px-lg-5 my-5">
       <div class="text-center text-white">
         <h1 class="display-4 fw-bolder">Welcome to Our Website</h1>
-        <p class="lead fw-normal text-white-50 mb-0">
+        <p class="lead fw-normal text-dark-50 mb-0">
           Discover amazing products and services
         </p>
       </div>
@@ -102,34 +103,53 @@
             <div class="d-flex justify-content-between align-items-center">
               <h6 class="text-uppercase">Price(USD)</h6>
             </div>
-
+            <!-----a sua cho nay----->
             <form class="mb-3 price-input-form">
-              <div class="form-control d-flex">
+              <div class="slidecontainer d-flex bg-gradient">
                 <span>0$</span>
-                <input type="range" class="form-range" min="0" max="10000" value="0">
+                  <input type="range" min="0" max="10000" value="50" class="slider" id="myRange">
+                  
+                  <p><br><span id="demo"></span></p>
                 <span>10000$</span>
               </div>
+              <!----this is for JS code for slidecontainer--->
+              <script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value;
+
+                slider.oninput = function() {
+                  output.innerHTML = this.value;
+                }
+              </script>
             </form>
           </div>
+          <!-----toi day---------------->
           <div class="brand p-2">
           </div>
         </div>
-        <div class="container px-4 px-lg-5 mt-5 col-md-9">
-          <div class="input-group rounded mb-5">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-              aria-describedby="search-addon" />
-            <span class="input-group-text border-0" id="search-addon">
-              <i class="bi bi-search"></i>
-            </span>
-          </div>
-
+        <!-----search bar Kiet-------->
+        <div id="cover">
+          <form method="get" action="">
+            <div class="tb">
+              <div class="td"><input type="text" placeholder="Search" required></div>
+              <div class="td" id="s-cover">
+                <button type="submit">
+                  <div id="s-circle"></div>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-----to here----------->
           <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
             <div class="col mb-5">
               <div class="card h-100">
                 <!-- Product image-->
                 <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
                 <!-- Product details-->
-                <div class="card-body p-4">
+                <div class="card-body bg-gradient p-4">
                   <div class="text-center">
                     <!-- Product name-->
                     <h5 class="fw-bolder">Fancy Product</h5>
@@ -137,10 +157,10 @@
                     $40.00 - $80.00
                   </div>
                 </div>
-                <!-- Product actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <!-- Product actionsssssssssssssssssssssssssssssssssssssssssssssssssss-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-body">
                   <div class="text-center">
-                    <a class="btn btn-outline-dark mt-auto" href="#">View options</a>
+                    <a class="btn btn-outline-danger mt-auto" href="#">View options</a>
                   </div>
                 </div>
               </div>
