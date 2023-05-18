@@ -1,0 +1,76 @@
+const Product = require('../models/product');
+const path = require('path')
+const fs = require('fs')
+
+async function getAllProducts(req, res) {
+    try {
+        return await Product.find();
+    } catch (error) {
+        console.log(error);
+        return []
+    }
+}
+
+async function getAllProductsWithCategoryFilter(values) {
+    try {
+        return await Product.find({
+            category: { $in: values }
+        });
+    } catch (error) {
+        console.log(error);
+        return []
+    }
+}
+const searchProducts = async (name, price) => {
+    try {
+        const regexPattern = new RegExp(`\\b${name}\\b`, 'i');
+
+        if (price == 0 || isNaN(price)) {
+            return await Product.find({ name: { $regex: regexPattern } });
+        } else {
+            const minPrice = price - Math.round((price * 15) / 100); // Minimum price
+            const maxPrice = price + Math.round((price * 15) / 100); // Maximum price
+
+            console.log(minPrice,maxPrice)
+            return await Product.find({ name: { $regex: regexPattern }, price: { $gte: minPrice, $lte: maxPrice } });
+        }
+    } catch (error) {
+        console.error('Error searching products:', error);
+        return []
+    }
+};
+
+async function createProduct(req, res) {
+    const { name, price, description, vendor, category } = req.body;
+
+    if (!req.file) {
+        const defaultImagePath = path.join(__dirname, '..', '..', 'public', 'assets', 'imgs', 'product-image.png');
+
+        const file = {
+            buffer: fs.readFileSync(defaultImagePath),
+            originalname: 'product-image.png',
+            mimetype: 'image/png'
+        };
+        req.file = file;
+    }
+
+    try {
+        const product = new Product({
+            name: name, price: price, description: description, image: {
+                data: req.file.buffer, contentType: req.file.mimetype
+            }, vendor: vendor, category: category
+        });
+
+        product.save()
+        res.status(201).json({ message: "successfully added the product!" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+module.exports = {
+    getAllProducts,
+    createProduct,
+    searchProducts
+};
