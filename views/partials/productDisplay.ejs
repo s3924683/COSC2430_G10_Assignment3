@@ -24,13 +24,27 @@
           <div class="d-flex justify-content-between align-items-center">
             <h6 class="text-uppercase">Price(USD)</h6>
           </div>
-
           <form class="mb-3 price-input-form">
-            <div class="form-control d-flex">
-              <span>0$</span>
-              <input id="price-range" type="range" class="form-range" min="0" max="10000" value="0">
+            <div class="slidecontainer d-flex bg-gradient flex-column align-items-center justify-content-center">
+              <div class="container-fluid  d-flex p-0 m-0">
+                <span>0$</span>
+                <input type="range" min="0" max="10000" value="0" class="slider" id="myRange">   
               <span>10000$</span>
+              </div>
+             
+                <p class="text-center"><br><span id="demo"></span>$</p>
             </div>
+            
+            <!----this is for JS code for slidecontainer--->
+            <script>
+              var slider = document.getElementById("myRange");
+              var output = document.getElementById("demo");
+              output.innerHTML = slider.value;
+
+              slider.oninput = function() {
+                output.innerHTML = this.value;
+              }
+            </script>
           </form>
         </div>
         <div class="brand p-2">
