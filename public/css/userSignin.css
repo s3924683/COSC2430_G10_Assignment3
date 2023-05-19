@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;;
+}
+
+body {
+    margin: 50px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(2,0,36);
+    background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(139,139,150,1) 35%, rgba(0,212,255,1) 100%); 
+}
+  
+nav a {
+    font-size: 18px;
+}
+
+hr {
+   color: white;
+   opacity: 100%;
+   margin-top: 0px;
+}
+
+.login {
+    height: min-content;
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 20px;
+}
+
+.login h1 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.login form {
+    font-size: 18px;
+}
+
+.login form .form-group {
+    padding-bottom: 12px;
+}
+
+.login form input[type="submit"] {
+    font-size: 18px;
+    margin-top: 15px;
+    background: linear-gradient(90deg, #FB1CBE 0%, #FF8B00 100%);
+    color: #ffffff;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  .message-success {
+    color: green;
+  }
+  
+  .message-error {
+    color: red;
+  }
+
+.form-select {
+    font-size: 16px;
+}
+
+#i1 {
+    height: 250px;
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+    #i1 {
+        height: 170px;
+    }
+    
+    #i2 {
+        height: 90px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .login h1 {
+        font-size: 20px;
+    }
+
+    .login form {
+        font-size: 12px;
+    }
+
+    .login form input[type="submit"] {
+        font-size: 12px;
+    }
+
+    .login p {
+        font-size: 11px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    #i1 {
+        height: 230px;
+    }
+    
+    #i2 {
+        height: 60px;
+    }
+}

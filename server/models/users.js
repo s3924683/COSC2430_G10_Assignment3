@@ -18,8 +18,8 @@ const usernameRules = {
 const passwordRules = {
   type: String,
   required: true,
-  minlength: 8,
-  maxlength: 20,
+  minLength: 8,
+  /*
   match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/,
   validate(value) {
     if (
@@ -32,6 +32,7 @@ const passwordRules = {
       );
     }
   },
+  */
 };
 const pfpRules = {
   data: Buffer,
