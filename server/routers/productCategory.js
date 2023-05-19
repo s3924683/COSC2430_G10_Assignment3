@@ -6,7 +6,7 @@ router.route("/:categoryName").get(async (req, res) => {
   const categoryName = req.params.categoryName;
   const categories = require("../database/categories.json");
 
-  const products = await productControllers.getAllProducts();
+  const products = await productControllers.getAllProductsByCategory(categoryName);
 
   res.render("productCategory", {
     categories: categories,

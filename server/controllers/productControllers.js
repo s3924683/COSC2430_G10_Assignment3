@@ -10,15 +10,22 @@ async function getAllProducts(req, res) {
     return [];
   }
 }
-
-async function getAllProductsWithCategoryFilter(values) {
+async function getProductById(objectId) {
+  try {
+    return await Product.findOne({ _id: objectId });
+  } catch (error) {
+    console.log(error);
+    return
+  }
+}
+async function getAllProductsByCategory(categoryName) {
   try {
     return await Product.find({
-      category: { $in: values },
+      category: categoryName,
     });
   } catch (error) {
     console.log(error);
-    return [];
+    return;
   }
 }
 const searchProducts = async (name, price) => {
@@ -41,7 +48,6 @@ const searchProducts = async (name, price) => {
     return [];
   }
 };
-
 async function createProduct(req, res) {
   const { name, price, description, vendor, category } = req.body;
 
@@ -87,6 +93,8 @@ async function createProduct(req, res) {
 
 module.exports = {
   getAllProducts,
+  getAllProductsByCategory,
+  getProductById,
   createProduct,
   searchProducts,
 };

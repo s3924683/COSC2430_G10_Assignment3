@@ -28,20 +28,20 @@
             <div class="slidecontainer d-flex bg-gradient flex-column align-items-center justify-content-center">
               <div class="container-fluid  d-flex p-0 m-0">
                 <span>0$</span>
-                <input type="range" min="0" max="10000" value="0" class="slider" id="price-range">   
-              <span>10000$</span>
+                <input type="range" min="0" max="10000" value="0" class="slider" id="price-range">
+                <span>10000$</span>
               </div>
-             
-                <p class="text-center"><br><span id="demo"></span>$</p>
+
+              <p class="text-center"><br><span id="demo"></span>$</p>
             </div>
-            
+
             <!----this is for JS code for slidecontainer--->
             <script>
               var slider = document.getElementById("price-range");
               var output = document.getElementById("demo");
               output.innerHTML = slider.value;
 
-              slider.oninput = function() {
+              slider.oninput = function () {
                 output.innerHTML = this.value;
               }
             </script>
@@ -56,8 +56,10 @@
             <ol class="breadcrumb breadcrumb-custom overflow-hidden text-center bg-body-tertiary">
               <li class="breadcrumb-item">
                 <a class="link-body-emphasis fw-semibold text-decoration-none" href="/">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-house-door" viewBox="0 0 16 16">
+                    <path
+                      d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z" />
                   </svg>
                   Home
                 </a>
@@ -69,70 +71,59 @@
               </li>
             </ol>
           </nav>
-        <%}%>
-       
-        <div class="container" id="cover">
-          <form id="search-form" method="get" enctype="multipart/form-data">
-            <div class="tb">
-              <div class="td"><input id="search-box" type="text" placeholder="Search" aria-label="Search" aria-describedby="search-addon"></div>
-              <div class="td" id="s-cover">
-                <button id="search-button"  type="submit">
-                  <div id="s-circle"></div>
-                  <span></span>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
+          <%}%>
 
-        <!--  <div class="input-group rounded mb-5">
-          <input id="search-box" type="search" class="form-control rounded" placeholder="Search"
-            aria-label="Search" aria-describedby="search-addon" />
-          <span class="input-group-text border-0" id="search-addon">
-            <button type="button" id="search-button" class="btn"> <svg xmlns="http://www.w3.org/2000/svg"
-                width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path
-                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-              </svg></button>
-          </span>
-        </div>-->
-      
-        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
-          <% if (products.length> 0) { %>
-
-            <% products.forEach((product)=> { %>
-              <div class="col mb-5">
-                <div class="card h-100">
-                  <!-- Product image-->
-
-                  <img class="card-img-top"
-                    src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toString('base64') %>"
-                    alt="Product Image" height="300px" width="450px" />
-                  <!-- Product details-->
-                  <div class="card-body p-4">
-                    <div class="text-center">
-                      <!-- Product name-->
-                      <h5 class="fw-bolder">
-                        <%=product.name%>
-                      </h5>
-                      <!-- Product price-->
-                      $<%=product.price%>
-                    </div>
-                  </div>
-                  <!-- Product actions-->
-                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center">
-                      <a class="btn btn-outline-dark mt-auto" href="#">View product</a>
-                    </div>
+            <div class="container" id="cover">
+              <form id="search-form" method="get" enctype="multipart/form-data">
+                <div class="tb">
+                  <div class="td"><input id="search-box" type="text" placeholder="Search" aria-label="Search"
+                      aria-describedby="search-addon"></div>
+                  <div class="td" id="s-cover">
+                    <button id="search-button" type="submit">
+                      <div id="s-circle"></div>
+                      <span></span>
+                    </button>
                   </div>
                 </div>
-              </div>
-              <% }); %>
+              </form>
+            </div>
 
-                <% } else { %>
-                  <h5>No products found</h5>
-                  <% } %>
-        </div>
+            <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+              <% if (products.length> 0) { %>
+
+                <% products.forEach((product)=> { %>
+                  <div class="col mb-5">
+                    <div class="card h-100">
+                      <!-- Product image-->
+
+                      <img class="card-img-top"
+                        src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toString('base64') %>"
+                        alt="Product Image" height="300px" width="450px" />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                        <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">
+                            <%=product.name%>
+                          </h5>
+                          <!-- Product price-->
+                          $<%=product.price%>
+                        </div>
+                      </div>
+                      <!-- Product actions-->
+                      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                          <a class="btn btn-outline-dark mt-auto" href=/product/<%=product._id%>>View product</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% }); %>
+
+                    <% } else { %>
+                      <h5>No products found</h5>
+                      <% } %>
+            </div>
       </div>
     </div>
 </section>
