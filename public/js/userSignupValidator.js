@@ -52,10 +52,10 @@ const validateInputs = () => {
 
   if (password == "") {
     setError(passwordInput, "Password is required!");
-    errors += 1;
+    isValid = false;
   } else if (password.length < 8 || password.length > 20) {
     setError(passwordInput, "Password length must be 8 to 20 characters!");
-    errors += 1;
+    isValid = false;
   } else if (
     !password.match(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/
@@ -65,21 +65,21 @@ const validateInputs = () => {
       passwordInput,
       "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character!"
     );
-    errors += 1;
+    isValid = false;
   } else {
     setSuccess(passwordInput);
   }
 
   if (name === "") {
     setError(nameInput, "Name is required!");
-    errors += 1;
+    isValid = false;
   } else {
     setSuccess(nameInput);
   }
 
-  if (address === "") {
+  if (address == "") {
     setError(addressInput, "Address is required!");
-    errors += 1;
+    isValid = false;
   } else {
     setSuccess(nameInput);
   }
