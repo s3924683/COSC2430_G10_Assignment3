@@ -5,9 +5,9 @@ const businessNameInput = document.getElementById("businessName");
 const businessAddressInput = document.getElementById("businessAddress");
 
 signupForm.addEventListener("submit", (ev) => {
-  ev.preventDefault();
-  if (validateInputs()) {
-    HTMLFormElement.prototype.submit.call(signupForm);
+  if (!validateInputs()) {
+    //HTMLFormElement.prototype.submit.call(signupForm);
+    ev.preventDefault();
   }
 });
 
@@ -73,8 +73,7 @@ const validateInputs = () => {
   if (businessName == "") {
     setError(businessNameInput, "Business name is required!");
     isValid = false;
-  }
-  else if (businessName.length < 5) {
+  } else if (businessName.length < 5) {
     setError(
       businessNameInput,
       "Business name must be more than 5 characters!"

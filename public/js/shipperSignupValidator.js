@@ -1,8 +1,6 @@
 const signupForm = document.getElementById("signup-form");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
-const nameInput = document.getElementById("name");
-const addressInput = document.getElementById("address");
 
 signupForm.addEventListener("submit", (ev) => {
   if (!validateInputs()) {
@@ -32,13 +30,10 @@ const setSuccess = (element) => {
 const validateInputs = () => {
   const username = usernameInput.value.trim();
   const password = passwordInput.value.trim();
-  const name = nameInput.value.trim();
-  const address = addressInput.value.trim();
 
   let isValid = true;
-
   if (username === "") {
-    setError(usernameInput, "Username is required!");
+    setError(usernameInput, "Username name is required!");
     isValid = false;
   } else if (username.length < 8 || username.length > 15) {
     setError(usernameInput, "Username must be a length from 8 to 15!");
@@ -52,10 +47,10 @@ const validateInputs = () => {
 
   if (password == "") {
     setError(passwordInput, "Password is required!");
-    errors += 1;
+    isValid = false;
   } else if (password.length < 8 || password.length > 20) {
     setError(passwordInput, "Password length must be 8 to 20 characters!");
-    errors += 1;
+    isValid = false;
   } else if (
     !password.match(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/
@@ -65,23 +60,9 @@ const validateInputs = () => {
       passwordInput,
       "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character!"
     );
-    errors += 1;
+    isValid = false;
   } else {
     setSuccess(passwordInput);
-  }
-
-  if (name === "") {
-    setError(nameInput, "Name is required!");
-    errors += 1;
-  } else {
-    setSuccess(nameInput);
-  }
-
-  if (address === "") {
-    setError(addressInput, "Address is required!");
-    errors += 1;
-  } else {
-    setSuccess(nameInput);
   }
 
   return isValid;

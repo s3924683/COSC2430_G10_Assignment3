@@ -30,11 +30,11 @@ const userSchema = new mongoose.Schema({
   pfp: pfpRules,
   name: {
     type: String,
-    minLength: 5
+    minLength: 5,
   },
   address: {
     type: String,
-    minLength: 5
+    minLength: 5,
   },
 });
 const shipperSchema = new mongoose.Schema({
