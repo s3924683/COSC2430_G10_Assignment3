@@ -12,6 +12,8 @@ const userRouter = require("./server/routers/user")
 const vendorRouter = require("./server/routers/vendor")
 const shipperRouter = require("./server/routers/shipper")
 const cartRouter = require("./server/routers/cart")
+const paymentpageRouter = require("./server/routers/paymentpage")
+const thankyouRouter = require("./server/routers/thankyou")
 
 require("./server/database/mongoose");
 
@@ -35,6 +37,8 @@ app.use("/category", productCategoryRouter)
 app.use("/search", searchRouter)
 app.use('/product', productDetailRouter)
 app.use('/cart',cartRouter)
+app.use('/payment',paymentpageRouter)
+app.use('/thankyou',thankyouRouter)
 
 app.use((req, res, next) => {
   res.status(404).send("<h1>Sorry, this page does not exist.</h1>");

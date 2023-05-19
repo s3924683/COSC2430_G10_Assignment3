@@ -77,4 +77,7 @@ router
     }
   });
 
+router.route("/dashboard").get(async (req, res) => {
+    res.render('shipperDashboard', { message: null });
+})
 module.exports = router;

@@ -104,4 +104,7 @@ router
     }
   });
 
+router.route("/myProduct").get(async (req, res) => {
+    res.render("vendorProduct")
+  })
 module.exports = router;
