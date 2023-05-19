@@ -18,21 +18,6 @@ const usernameRules = {
 const passwordRules = {
   type: String,
   required: true,
-  minLength: 8,
-  /*
-  match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/,
-  validate(value) {
-    if (
-      !value.match(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/
-      )
-    ) {
-      throw new Error(
-        "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
-      );
-    }
-  },
-  */
 };
 const pfpRules = {
   data: Buffer,
@@ -43,8 +28,14 @@ const userSchema = new mongoose.Schema({
   username: usernameRules,
   password: passwordRules,
   pfp: pfpRules,
-  name: String,
-  address: String,
+  name: {
+    type: String,
+    minLength: 5,
+  },
+  address: {
+    type: String,
+    minLength: 5,
+  },
 });
 const shipperSchema = new mongoose.Schema({
   username: usernameRules,

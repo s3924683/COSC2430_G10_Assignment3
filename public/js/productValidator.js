@@ -34,6 +34,7 @@ const validateInputs = () => {
   const formNameValue = formName.value.trim();
   const formPriceValue = formPrice.value.trim();
 
+  console.log(productCreatorForm)
   if (formNameValue === "") {
     setError(formName, "Product name is required!");
     errors += 1

@@ -1,0 +1,72 @@
+<%- include('partials/head.ejs') %>
+  <link href="/css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+  </head>
+
+<body>
+  <%- include('partials/header.ejs') %>
+  </header>
+
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <h5>All(0)</h5>
+
+            <div class="container sidebar-wrapper bg-transparent">
+                <div class="row d-flex justify-content-center align-items-center active-product bg-light m-3">
+                    <div class="col-md-4">
+                        <img class="card-img" src="../public/assets/imgs/rmit-icon.png">
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <h5 class="card-title">Vendor</h5>
+                        <div class="card-body p-1">
+                            <p class="card-text">Phone number</p>
+                            <p class="card-text">Address</p>
+                        </div>
+                    </div>
+                <button type="button" class="btn btn-primary shipper-card-button">View</button>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center active-product bg-light m-3">
+                    <div class="col-md-4">
+                        <img class="card-img" src="../public/assets/imgs/rmit-icon.png">
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <h5 class="card-title">Vendor</h5>
+                        <div class="card-body p-1">
+                            <p class="card-text">Phone number</p>
+                            <p class="card-text">Address</p>
+                        </div>
+                    </div>
+                <button type="button" class="btn btn-primary shipper-card-button">View</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 card">
+            <div class="row">
+                <h5>Name</h5>
+                <p>Phone number</p>
+                <p>Address</p>
+            </div>
+
+            <div class="row">
+                <hr>
+            </div>
+
+            <div class="row">
+                <h5>Product name</h5>
+                <p>Price: ?$</p>
+                <p>Status: Active</p>
+            </div>
+
+            <button type="button" class="btn btn-secondary shipper-card-button m-1">Delivered the product</button>
+            <button type="button" class="btn btn-danger shipper-card-button m-1">Cancel</button>
+        </div>
+    </div>
+</div>
+  
+  <!-- Footer-->
+  <%- include('partials/footer.ejs') %>
+        </footer>
+        <%- include('partials/end.ejs') %>
