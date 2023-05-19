@@ -34,10 +34,23 @@ router.route("/signup").get(async (req, res) => {
         const { username, password, businessName, businessAddress } = req.body;
 
         // Check if the username already exists in either the user or vendor collection
-        const existingVendor = await Vendor.findOne({ username });
+        let existingVendor = await Vendor.findOne({ username });
+
         if (existingVendor) {
             // Username is already taken, render the vendor_signup template with an error message
             return res.render('vendorSignup', { message: 'Vendor Username is already taken' });
+        }
+
+        existingVendor = await Vendor.findOne({businessAddress})
+
+        if (existingVendor) {
+            return res.render('vendorSignup', { message: 'Vendor business address is already taken' });
+        }
+
+        existingVendor = await Vendor.findOne({businessName})
+
+        if (existingVendor) {
+            return res.render('vendorSignup', { message: 'Vendor business name is already taken' });
         }
 
         // Hash the password

@@ -4,7 +4,6 @@ const validator = require('validator').default;
 const distributionHubSchema = new mongoose.Schema({
     name: {
         type: String,
-        unique: true,
         required: true,
         trim: true,
         validate(value) {
@@ -15,7 +14,6 @@ const distributionHubSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        unique: true,
         required: true,
         trim: true,
         validate(value) {
