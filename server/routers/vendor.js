@@ -3,10 +3,15 @@ const router = express.Router();
 const { Vendor } = require("../models/users");
 const bcrypt = require("bcrypt");
 
+const sessionController = require("../controllers/sessionController");
+const homepage = require("../routers/homepage");
+
 router
   .route("/signin")
   .get(async (req, res) => {
-    res.render("vendorSignin", { message: null });
+    if (!(await homepage.renderHomepage(req, res))) {
+      res.render("vendorSignin", { message: null });
+    }
   })
   .post(async (req, res) => {
     try {
@@ -27,7 +32,9 @@ router
           message: "Invalid username or password",
         });
       }
-      res.render("homepage", { username: vendor.username });
+
+      sessionController.createSession(req, vendor);
+      await homepage.renderHomepage(req, res);
     } catch (error) {
       console.error(error);
       res.render("vendorSignin", {
@@ -43,8 +50,8 @@ router
   .post(async (req, res) => {
     try {
       const { username, password, businessName, businessAddress } = req.body;
+      const type = "vendor";
 
-      console.log(req.body);
       // Check if the username already exists in either the user or vendor collection
       let existingVendor = await Vendor.findOne({ username });
 
@@ -83,6 +90,7 @@ router
         password: hashedPassword,
         businessName,
         businessAddress,
+        type,
         // other vendor-specific fields
       });
 
@@ -105,6 +113,6 @@ router
   });
 
 router.route("/myProduct").get(async (req, res) => {
-    res.render("vendorProduct")
-  })
+  res.render("vendorProduct");
+});
 module.exports = router;

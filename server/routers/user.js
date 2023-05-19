@@ -2,12 +2,16 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../models/users");
 const bcrypt = require("bcrypt");
-const categories = require("../database/categories.json");
+
+const sessionController = require("../controllers/sessionController");
+const homepage = require("../routers/homepage");
 
 router
   .route("/signin")
   .get(async (req, res) => {
-    res.render("userSignin", { message: null });
+    if (!(await homepage.renderHomepage(req, res))) {
+      res.render("userSignin", { message: null });
+    }
   })
   .post(async (req, res) => {
     try {
@@ -33,11 +37,13 @@ router
         });
       }
 
+      sessionController.createSession(req, user);
       // Successful sign-in
       // You can redirect the user to a different page or perform other actions here
-      res.render("about", { user: username, categories: categories }); // Render the dashboard template with the username
+      await homepage.renderHomepage(req, res);
     } catch (error) {
       // Handle any errors that occurred during the sign-in process
+      console.error(error);
       res.render("userSignin", {
         message: "An error occurred. Please try again later.",
       });
@@ -53,14 +59,7 @@ router
     try {
       // Process signup...
       const { username, password, address, name } = req.body;
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const user = new User({
-        username,
-        password: hashedPassword,
-        address,
-        name,
-      });
+      const type = "user";
 
       const existingUser = await User.findOne({ username });
       if (existingUser) {
@@ -69,6 +68,16 @@ router
           messageType: "error",
         });
       }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const user = new User({
+        username,
+        password: hashedPassword,
+        address,
+        name,
+        type,
+      });
 
       // Save the user to the database
       await user.save();

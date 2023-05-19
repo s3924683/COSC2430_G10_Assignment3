@@ -3,10 +3,15 @@ const router = express.Router();
 const { Shipper } = require("../models/users");
 const bcrypt = require("bcrypt");
 
+const sessionController = require("../controllers/sessionController");
+const homepage = require("../routers/homepage");
+
 router
   .route("/signin")
   .get(async (req, res) => {
-    res.render("shipperSignin", { message: null });
+    if (!(await homepage.renderHomepage(req, res))) {
+      res.render("shipperSignin", { message: null });
+    }
   })
   .post(async (req, res) => {
     try {
@@ -28,7 +33,8 @@ router
         });
       }
 
-      res.render("homepage", { username: shipper.username });
+      sessionController.createSession(req, shipper);
+      await homepage.renderHomepage(req, res);
     } catch (error) {
       console.error(error);
       res.render("shipperSignin", {
@@ -44,6 +50,7 @@ router
   .post(async (req, res) => {
     try {
       const { username, password, distributionHub } = req.body;
+      const type = "shipper";
 
       const existingShipper = await Shipper.findOne({ username });
       if (existingShipper) {
@@ -61,6 +68,7 @@ router
         username,
         password: hashedPassword,
         distributionHub,
+        type,
       });
 
       await shipper.save();
@@ -78,6 +86,6 @@ router
   });
 
 router.route("/dashboard").get(async (req, res) => {
-    res.render('shipperDashboard', { message: null });
-})
+  res.render("shipperDashboard", { message: null });
+});
 module.exports = router;

@@ -36,12 +36,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     minLength: 5,
   },
+  type: String,
 });
 const shipperSchema = new mongoose.Schema({
   username: usernameRules,
   password: passwordRules,
   pfp: pfpRules,
   distributionHub: String,
+  type: String,
 });
 const vendorSchema = new mongoose.Schema({
   username: usernameRules,
@@ -58,6 +60,7 @@ const vendorSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  type: String,
 });
 
 module.exports = {
