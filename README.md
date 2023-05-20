@@ -16,5 +16,3 @@ How to use?
 npm install to install packages from packages.json
 node . in terminal to run index.js
 use accounts above to test
-
-Video link: ?
