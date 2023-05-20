@@ -1,9 +1,17 @@
+/*
+RMIT University Vietnam
+ Course: COSC2430 Web Programming
+ Semester: 2023A
+ Assessment: Assignment 2
+ Author: Group 10
+ Acknowledgement: Acknowledge the resources that you use here.
+*/
+
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
 require("dotenv").config();
 
-const addProductRouter = require("./server/routers/addProduct");
 const productCategoryRouter = require("./server/routers/productCategory");
 const homepageRouter = require("./server/routers/homepage").router;
 const searchRouter = require("./server/routers/search");
@@ -45,7 +53,6 @@ app.use("/shipper", shipperRouter);
 
 app.use("/homepage", homepageRouter);
 app.use("/about", aboutRouter);
-app.use("/addProduct", addProductRouter);
 app.use("/category", productCategoryRouter);
 app.use("/search", searchRouter);
 app.use("/product", productDetailRouter);
@@ -53,6 +60,14 @@ app.use("/cart", cartRouter);
 app.use("/payment", paymentpageRouter);
 app.use("/thankyou", thankyouRouter);
 
+app.get("/logout", (req, res) => {
+  if (req.session) {
+    if(req.session.user){
+      delete req.session.user;
+    }
+  }
+  res.redirect("/user/signin");
+});
 app.use((req, res, next) => {
   res.status(404).send("<h1>Sorry, this page does not exist.</h1>");
 });

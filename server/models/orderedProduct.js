@@ -9,7 +9,7 @@ RMIT University Vietnam
 
 const mongoose = require("mongoose");
 
-const productSchema = new mongoose.Schema({
+const orderedProductSchema = new mongoose.Schema({
   name: {
     type: String,
     name: String,
@@ -36,4 +36,4 @@ const productSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("OrderedProduct", orderedProductSchema);

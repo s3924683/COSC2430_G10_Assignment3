@@ -5,7 +5,7 @@
     <%- include('partials/header.ejs') %>
       </header>
       <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <form action="/addProduct" method="post" name="product-creator" id="product-creator"
+        <form action="/vendor/addProduct/" method="post" name="product-creator" id="product-creator"
           enctype="multipart/form-data">
           <div class="form-group p-1">
             <% if(isSubmitted){ %>
@@ -52,5 +52,5 @@
 
       <%- include('partials/footer.ejs') %>
         </footer>
-        <script src="js/productValidator.js"></script>
+        <script src="/js/productValidator.js"></script>
         <%- include('partials/end.ejs') %>

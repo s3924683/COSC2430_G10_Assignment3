@@ -1,3 +1,12 @@
+/*
+RMIT University Vietnam
+ Course: COSC2430 Web Programming
+ Semester: 2023A
+ Assessment: Assignment 2
+ Author: Group 10
+ Acknowledgement: Acknowledge the resources that you use here.
+*/
+
 const signupForm = document.getElementById("signup-form");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
@@ -6,7 +15,6 @@ const businessAddressInput = document.getElementById("businessAddress");
 
 signupForm.addEventListener("submit", (ev) => {
   if (!validateInputs()) {
-    //HTMLFormElement.prototype.submit.call(signupForm);
     ev.preventDefault();
   }
 });

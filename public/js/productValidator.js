@@ -1,3 +1,12 @@
+/*
+RMIT University Vietnam
+ Course: COSC2430 Web Programming
+ Semester: 2023A
+ Assessment: Assignment 2
+ Author: Group 10
+ Acknowledgement: Acknowledge the resources that you use here.
+*/
+
 const productCreatorForm = document.getElementById("product-creator");
 const formName = document.getElementById("name");
 const formPrice = document.getElementById("price");

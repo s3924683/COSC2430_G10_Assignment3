@@ -1,9 +1,20 @@
+/*
+RMIT University Vietnam
+ Course: COSC2430 Web Programming
+ Semester: 2023A
+ Assessment: Assignment 2
+ Author: Group 10
+ Acknowledgement: Acknowledge the resources that you use here.
+*/
+
 const express = require("express");
 const router = express.Router();
 const { Shipper } = require("../models/users");
 const bcrypt = require("bcrypt");
 
 const sessionController = require("../controllers/sessionController");
+const orderedProductController = require("../controllers/orderedProductController");
+
 const homepage = require("../routers/homepage");
 
 router
@@ -86,6 +97,92 @@ router
   });
 
 router.route("/dashboard").get(async (req, res) => {
-  res.render("shipperDashboard", { message: null });
+  if (sessionController.hasSession(req)) {
+    const user = req.session.user;
+
+    let cart = req.session.cart || [];
+
+    const orderedProducts = await orderedProductController.getAllProducts();
+
+    res.render("shipperDashboard", {
+      user: user,
+      cart: cart,
+      orderedProducts: orderedProducts,
+      activeProduct: undefined,
+    });
+  } else {
+    res.redirect("/shipper/signin");
+  }
+});
+
+router.route("/dashboard/view/:productId").get(async (req, res) => {
+  if (sessionController.hasSession(req)) {
+    const user = req.session.user;
+
+    let cart = req.session.cart || [];
+
+    const productId = req.params.productId;
+   
+    const activeProduct = await orderedProductController.getProductById(
+      productId
+    );
+
+    const orderedProducts = await orderedProductController.getAllProducts();
+
+    res.render("shipperDashboard", {
+      user: user,
+      cart: cart,
+      orderedProducts: orderedProducts,
+      activeProduct: activeProduct,
+    });
+  } else {
+    res.redirect("/shipper/signin");
+  }
+});
+
+router.route("/dashboard/delivered/:productId").get(async (req, res) => {
+  if (sessionController.hasSession(req)) {
+    const user = req.session.user;
+
+    let cart = req.session.cart || [];
+
+    const productId = req.params.productId;
+   
+    await orderedProductController.removeProductById(productId)
+
+    const orderedProducts = await orderedProductController.getAllProducts();
+
+    res.render("shipperDashboard", {
+      user: user,
+      cart: cart,
+      orderedProducts: orderedProducts,
+      activeProduct: undefined,
+    });
+  } else {
+    res.redirect("/shipper/signin");
+  }
+});
+
+router.route("/dashboard/cancel/:productId").get(async (req, res) => {
+  if (sessionController.hasSession(req)) {
+    const user = req.session.user;
+
+    let cart = req.session.cart || [];
+
+    const productId = req.params.productId;
+   
+    await orderedProductController.removeProductById(productId)
+
+    const orderedProducts = await orderedProductController.getAllProducts();
+
+    res.render("shipperDashboard", {
+      user: user,
+      cart: cart,
+      orderedProducts: orderedProducts,
+      activeProduct: undefined,
+    });
+  } else {
+    res.redirect("/shipper/signin");
+  }
 });
 module.exports = router;

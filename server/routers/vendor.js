@@ -1,3 +1,12 @@
+/*
+RMIT University Vietnam
+ Course: COSC2430 Web Programming
+ Semester: 2023A
+ Assessment: Assignment 2
+ Author: Group 10
+ Acknowledgement: Acknowledge the resources that you use here.
+*/
+
 const express = require("express");
 const router = express.Router();
 const { Vendor } = require("../models/users");
@@ -5,6 +14,9 @@ const bcrypt = require("bcrypt");
 
 const sessionController = require("../controllers/sessionController");
 const homepage = require("../routers/homepage");
+const productController = require("../controllers/productControllers");
+const upload = require("../middleware/upload");
+const categories = require("../database/categories.json");
 
 router
   .route("/signin")
@@ -113,6 +125,30 @@ router
   });
 
 router.route("/myProduct").get(async (req, res) => {
-  res.render("vendorProduct");
+  if (sessionController.hasSession(req)) {
+    res.render("vendorProduct");
+  } else {
+    res.redirect("/vendor/signin/");
+  }
 });
+
+router
+  .route("/addProduct")
+  .get(async (req, res) => {
+    if (sessionController.hasSession(req)) {
+      const user = req.session.user;
+
+      let cart = req.session.cart || [];
+      res.render("addProduct", {
+        isSubmitted: false,
+        categories: categories,
+        user: user,
+        cart,
+      });
+    } else {
+      res.redirect("/vendor/signin/");
+    }
+  })
+  .post(upload.single("image"), productController.createProduct);
+
 module.exports = router;

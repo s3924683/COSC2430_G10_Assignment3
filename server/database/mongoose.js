@@ -1,9 +1,14 @@
+/*
+RMIT University Vietnam
+ Course: COSC2430 Web Programming
+ Semester: 2023A
+ Assessment: Assignment 2
+ Author: Group 10
+ Acknowledgement: Acknowledge the resources that you use here.
+*/
+
 const mongoose = require("mongoose");
 mongoose
   .connect(process.env.DB_URI)
   .then(() => console.log("DB Connected!"))
   .catch((err) => console.error(err));
-
-const { Shipper, Vendor, User } = require("../models/users.js");
-const DistributionHub = require('../models/distributionHub.js')
-const Product = require('../models/product.js')
